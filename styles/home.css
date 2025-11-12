@@ -4,8 +4,6 @@
   --text: #222;
   --muted: #6c757d;
   --primary: #0d6efd;
-
-  /* Фон для навбара и второстепенных секций */
   --bg-secondary: #f8f9fa;
 }
 
@@ -15,8 +13,6 @@ body.dark-mode {
   --text: #e6eef8;
   --muted: #98a3b8;
   --primary: #60a5fa;
-
-  /* Темный фон для навбара, карточек и секций */
   --bg-secondary: #0b1320;
 }
 
@@ -28,7 +24,6 @@ body{
   color: var(--text);
   margin: 0;
   -webkit-font-smoothing:antialiased;
-  /* Плавный переход для всей темы */
   transition: background-color 0.3s ease, color 0.3s ease;
 }
 
@@ -45,10 +40,8 @@ body{
 .btn-primary{background:var(--primary); border: none;}
 footer{background:transparent}
 
-/* Cards layout */
 .card .badge{margin-right:6px; margin-bottom:4px;}
 
-/* Modal styles (custom simple modal) */
 .custom-modal-backdrop{
   position:fixed;inset:0;background:rgba(0,0,0,0.5);display:flex;align-items:center;justify-content:center;z-index:1200;
 }
@@ -56,14 +49,10 @@ footer{background:transparent}
   width:100%;max-width:720px;background:var(--card);border-radius:10px;padding:20px;box-shadow:0 8px 30px rgba(0,0,0,0.2);
 }
 
-/* small screens */
 @media (max-width:576px){
   .avatar{width:40px;height:40px;font-size:1rem}
 }
 
-/* --- СТИЛИ ДЛЯ БОНУСОВ --- */
-
-/* 1. Preloader */
 #preloader {
   position: fixed;
   inset: 0;
@@ -86,7 +75,6 @@ footer{background:transparent}
   to { transform: rotate(360deg); }
 }
 
-/* 2. Back to Top Button (ФИНАЛЬНАЯ ВЕРСИЯ С ФИКСОМ) */
 .back-to-top {
   position: fixed;
   bottom: 25px;
@@ -98,23 +86,19 @@ footer{background:transparent}
   color: #fff;
   text-decoration: none;
   
-  /* Красиво центрируем иконку */
   display: flex; 
   align-items: center;
   justify-content: center;
   font-size: 24px;
   
-  /* ПРЯЧЕМ ПО УМОЛЧАНИЮ (прозрачный и невидимый) */
   opacity: 0;
   visibility: hidden;
   
-  /* Анимируем появление/исчезновение */
   transition: opacity 0.3s, visibility 0.3s, background-color 0.3s, transform 0.3s;
   z-index: 1000;
   box-shadow: 0 4px 10px rgba(0,0,0,0.1);
 }
 
-/* НОВЫЙ КЛАСС: JS будет добавлять этот класс, чтобы ПОКАЗАТЬ кнопку */
 .back-to-top.is-visible {
     opacity: 0.8; 
     visibility: visible;
@@ -126,8 +110,6 @@ footer{background:transparent}
   color: #fff;
 }
 
-
-/* 3. Scroll Animation */
 .reveal-on-scroll {
   opacity: 0;
   transform: translateY(30px);
@@ -138,12 +120,10 @@ footer{background:transparent}
   transform: translateY(0);
 }
 
-/* 4. Стили для переключателя темы (из портфолио) */
 .theme-switcher {
     cursor: pointer;
     font-size: 1.2rem;
     color: var(--text);
-    /* Выравниваем иконку по центру с кнопками */
     display: flex;
     align-items: center;
     padding: 0.25rem 0;
@@ -152,31 +132,22 @@ footer{background:transparent}
     color: var(--primary);
 }
 
-
-/*
- * =========================================================
- * --- ФИНАЛЬНЫЙ ФИКС ТЕМНОЙ ТЕМЫ ("РУЧНАЯ КОРРЕКЦИЯ") ---
- * =========================================================
- */
-
-/* 1. Исправляем Навбар (перебиваем .bg-white Bootstrap) */
 body.dark-mode .navbar {
   background-color: var(--bg-secondary) !important; 
   border-color: var(--muted) !important;
 }
 
-/* 2. Исправляем текст ссылок в Навбаре */
 body.dark-mode .nav-link {
-  color: var(--text); /* Светлый текст */
+  color: var(--text);
 }
 body.dark-mode .nav-link.active,
 body.dark-mode .nav-link:hover {
-  color: var(--primary); /* Активный синий */
+  color: var(--primary);
 }
 body.dark-mode .navbar-brand .brand-title {
   color: var(--text);
 }
-/* Иконка переключателя языка */
+
 body.dark-mode #langToggle {
     color: var(--text);
     border-color: var(--muted);
@@ -186,36 +157,30 @@ body.dark-mode #langToggle:hover {
     border-color: var(--primary);
 }
 
-/* 3. Исправляем .hero-section (перебиваем .bg-light Bootstrap) */
 body.dark-mode .hero-section {
     background-color: var(--bg-secondary) !important;
 }
 
-/* 4. Исправляем Формы (поля ввода на Search, Login, Signup) */
 body.dark-mode .form-control,
 body.dark-mode .form-select {
-    background-color: var(--bg); /* Темный фон */
-    color: var(--text); /* Светлый текст */
+    background-color: var(--bg);
+    color: var(--text);
     border-color: var(--muted);
 }
 
-/* 5. Исправляем Плейсхолдеры в формах */
 body.dark-mode .form-control::placeholder {
     color: var(--muted);
 }
 
-/* 6. Исправляем "muted" текст (он был нечитаемым) */
 body.dark-mode .text-muted {
     color: var(--muted) !important; 
 }
 
-/* 7. Исправляем теги (badge) */
 body.dark-mode .badge.bg-light {
     background-color: var(--bg) !important;
     color: var(--text) !important;
 }
 
-/* 8. Исправляем кнопки "Подробнее" */
 body.dark-mode .btn-outline-primary {
     color: var(--primary);
     border-color: var(--primary);
@@ -226,12 +191,10 @@ body.dark-mode .btn-outline-primary:hover {
     border-color: var(--primary);
 }
 
-/* 9. Исправляем ТЕКСТ ВНУТРИ КАРТОЧЕК */
 body.dark-mode .card {
-    color: var(--text); /* Заставляем весь текст (.h5, .p) внутри .card стать светлым */
+    color: var(--text);
 }
 
-/* 10. Убеждаемся, что .text-muted внутри карточки тоже светлый (но приглушенный) */
 body.dark-mode .card .text-muted {
     color: var(--muted) !important;
 }

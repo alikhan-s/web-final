@@ -157,11 +157,9 @@ const App = (function () {
     projects: []
   };
 
-  // Utils
   function $qs(sel, root = document) { return root.querySelector(sel); }
   function $qsa(sel, root = document) { return Array.from(root.querySelectorAll(sel)); }
 
-  // --- Функция для получения перевода в JS ---
   function getTranslation(key) {
     return LANGS[state.lang][key] || key; 
   }
@@ -181,12 +179,11 @@ const App = (function () {
         }
       }
     });
-    // lang toggle button label
+
     const langBtn = document.getElementById('langToggle');
     if (langBtn) langBtn.textContent = state.lang === 'ru' ? 'EN' : 'RU';
   }
 
-  // Fetch JSON helpers
   async function loadJSON(path) {
     try {
       const r = await fetch(path);
@@ -198,7 +195,6 @@ const App = (function () {
     }
   }
 
-  // --- ОБНОВЛЕНО: renderUserCard (добавлен data-i18n) ---
   function renderUserCard(u) {
     const col = document.createElement('div');
     col.className = 'col-md-4 reveal-on-scroll';
@@ -224,7 +220,6 @@ const App = (function () {
     return col;
   }
 
-  // --- ОБНОВЛЕНО: renderProjectCard (добавлен data-i18n) ---
   function renderProjectCard(p) {
     const col = document.createElement('div');
     col.className = 'col-md-4 reveal-on-scroll';
@@ -244,7 +239,6 @@ const App = (function () {
     return col;
   }
 
-  // Custom modal
   function openModal(htmlContent) {
     closeModal();
     const backdrop = document.createElement('div');
@@ -263,7 +257,6 @@ const App = (function () {
     document.body.style.overflow = '';
   }
 
-  // Scroll Animation Logic
   function handleScrollAnimations() {
     const $window = $(window);
     const windowBottom = $window.scrollTop() + $window.height();
@@ -278,7 +271,6 @@ const App = (function () {
     });
   }
 
-  // Initialize page-specific functionality
   async function initIndexPage() {
     document.getElementById('year') && (document.getElementById('year').textContent = new Date().getFullYear());
 
@@ -308,7 +300,6 @@ const App = (function () {
       });
     }
 
-    // --- ОБНОВЛЕНО: Модальное окно (использует getTranslation) ---
     document.getElementById('recommended')?.addEventListener('click', (e) => {
       if (e.target.matches('.btn-details')) {
         const id = Number(e.target.dataset.id);
@@ -369,7 +360,6 @@ const App = (function () {
       renderResults(res);
     });
 
-    // --- ОБНОВЛЕНО: Модальное окно (использует getTranslation) ---
     document.getElementById('results')?.addEventListener('click', (e) => {
       if (e.target.matches('.btn-details')) {
         const id = Number(e.target.dataset.id);
@@ -401,7 +391,6 @@ const App = (function () {
     state.projects.forEach(p => list.appendChild(renderProjectCard(p)));
     handleScrollAnimations();
 
-    // --- ОБНОВЛЕНО: Модальное окно (использует getTranslation) ---
     list.addEventListener('click', (e) => {
       if (e.target.matches('.btn-project')) {
         const id = Number(e.target.dataset.id);
@@ -422,7 +411,6 @@ const App = (function () {
     });
   }
 
-  // --- ОБНОВЛЕНО: Валидация (использует getTranslation) ---
   function attachFormValidation() {
     document.querySelectorAll('form').forEach(form => {
       form.addEventListener('submit', function (e) {
@@ -446,12 +434,9 @@ const App = (function () {
     });
   }
 
-  // Global initializations
   async function init() {
-    // 1. Применяем язык
     applyTranslations();
 
-    // --- 2. ЛОГИКА ТЕМЫ (из портфолио) ---
     const $themeToggle = $('#theme-toggle');
     const $body = $('body');
 
@@ -465,7 +450,6 @@ const App = (function () {
             $themeToggle.removeClass('bi-sun-fill').addClass('bi-moon-fill');
         }
     }
-    // Сразу применяем тему при загрузке
     applySavedTheme(); 
 
     $themeToggle.on('click', function() {
@@ -478,42 +462,32 @@ const App = (function () {
             $themeToggle.removeClass('bi-sun-fill').addClass('bi-moon-fill');
         }
     });
-    // --- КОНЕЦ ЛОГИКИ ТЕМЫ ---
 
-    // 3. Остальная логика
-    
-    // lang toggle
     document.getElementById('langToggle')?.addEventListener('click', () => {
       state.lang = state.lang === 'ru' ? 'en' : 'ru';
       localStorage.setItem('ft_lang', state.lang);
       applyTranslations();
     });
 
-    // close modal on ESC
     document.addEventListener('keydown', (e) => {
       if (e.key === 'Escape') closeModal();
     });
 
-    // --- ИСПРАВЛЕННАЯ ЛОГИКА Back to Top ---
     const $topBtn = $('.back-to-top');
     
-    // Слушатель скролла
     $(window).on('scroll', () => {
       if ($(this).scrollTop() > 300) { 
-        $topBtn.addClass('is-visible'); // Показываем
+        $topBtn.addClass('is-visible');
       } else {
-        $topBtn.removeClass('is-visible'); // Прячем
+        $topBtn.removeClass('is-visible');
       }
     });
     
-    // Слушатель клика (остается без изменений)
     $topBtn.on('click', (e) => {
       e.preventDefault();
       $('html, body').animate({ scrollTop: 0 }, 500);
     });
-    // --- КОНЕЦ ИСПРАВЛЕНИЯ ---
 
-    // --- ОБНОВЛЕНО: Копирование (использует getTranslation) ---
     $('#modalRoot').on('click', '.btn-copy', function() {
       const $btn = $(this);
       const textToCopy = $btn.attr('data-copy-text');
@@ -532,13 +506,10 @@ const App = (function () {
       });
     });
 
-    // Scroll Animations Trigger
     $(window).on('scroll load', handleScrollAnimations);
     
-    // Attach general form validation
     attachFormValidation();
 
-    // Preloader Hide
     $(window).on('load', () => {
       const $preloader = $('#preloader');
       if ($preloader.length) {
@@ -547,7 +518,6 @@ const App = (function () {
       }
     });
 
-    // Route-specific
     const page = window.location.pathname.split('/').pop();
     if (page === '' || page === 'index.html') await initIndexPage();
     if (page === 'search.html') await initSearchPage();
@@ -557,7 +527,6 @@ const App = (function () {
   return { init };
 })();
 
-// Start app after DOM loaded
 document.addEventListener('DOMContentLoaded', () => {
   App.init().catch(err => console.error(err));
 });
