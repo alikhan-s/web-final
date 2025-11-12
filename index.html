@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>FindTeam — Найди команду</title>
+
+  <!-- Bootstrap -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" />
+  <link rel="stylesheet" href="styles/home.css" />
+</head>
+<body>
+  <header>
+    <nav class="navbar navbar-expand-lg bg-white shadow-sm sticky-top" aria-label="Main navigation">
+      <div class="container">
+        <a class="navbar-brand fw-bold text-primary" href="index.html">FindTeam</a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#mainNav" aria-controls="mainNav" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="collapse navbar-collapse" id="mainNav">
+          <ul class="navbar-nav ms-auto mb-2 mb-lg-0" id="navLinks">
+            <li class="nav-item"><a class="nav-link" href="index.html" data-i18n="nav.home">Главная</a></li>
+            <li class="nav-item"><a class="nav-link" href="search.html" data-i18n="nav.search">Поиск</a></li>
+            <li class="nav-item"><a class="nav-link" href="projects.html" data-i18n="nav.projects">Проекты</a></li>
+            <li class="nav-item"><a class="nav-link" href="about.html" data-i18n="nav.about">О нас</a></li>
+          </ul>
+
+          <div class="d-flex align-items-center ms-lg-3 gap-2">
+            <button id="langToggle" class="btn btn-outline-secondary btn-sm" aria-label="Переключить язык">EN</button>
+            <button id="themeToggle" class="btn btn-outline-secondary btn-sm" aria-pressed="false" title="Toggle theme">🌙</button>
+            <a href="login.html" class="btn btn-outline-primary ms-2" data-i18n="nav.login">Войти</a>
+            <a href="signup.html" class="btn btn-primary" data-i18n="nav.signup">Регистрация</a>
+          </div>
+        </div>
+      </div>
+    </nav>
+  </header>
+
+  <main>
+    <!-- Hero -->
+    <section class="py-5 bg-light text-center text-md-start">
+      <div class="container py-4">
+        <div class="row align-items-center">
+          <div class="col-md-6">
+            <h1 class="fw-bold mb-3" data-i18n="hero.title">Найди команду. Начни проект. Развивайся.</h1>
+            <p class="text-muted mb-4" data-i18n="hero.subtitle">Платформа для начинающих специалистов — находи людей с похожими навыками, создавай команды и запускай первые проекты.</p>
+            <a href="search.html" class="btn btn-primary me-2" data-i18n="hero.cta1">Начать поиск</a>
+            <a href="about.html" class="btn btn-outline-primary" data-i18n="hero.cta2">Как это работает</a>
+          </div>
+
+          <div class="col-md-5 offset-md-1 mt-4 mt-md-0">
+            <div class="card shadow-sm p-4">
+              <h5 class="mb-3" data-i18n="quicksearch.title">Быстрый поиск</h5>
+              <form id="quickSearch" class="needs-validation" novalidate>
+                <div class="mb-3">
+                  <label for="q" class="form-label" data-i18n="quicksearch.label">Что ищешь?</label>
+                  <input type="search" id="q" class="form-control" placeholder="frontend, дизайнер..." required />
+                  <div class="invalid-feedback" data-i18n="quicksearch.invalid">Введите запрос</div>
+                </div>
+                <div class="mb-3">
+                  <label for="role" class="form-label" data-i18n="quicksearch.role">Роль</label>
+                  <select id="role" class="form-select" aria-label="Role select">
+                    <option value=""><?= /* translated via i18n */ '' ?></option>
+                    <option value="frontend">Frontend</option>
+                    <option value="backend">Backend</option>
+                    <option value="designer">Дизайнер</option>
+                    <option value="pm">PM</option>
+                    <option value="ml">ML</option>
+                  </select>
+                </div>
+                <button class="btn btn-primary w-100" type="submit" data-i18n="quicksearch.btn">Поиск</button>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Recommended -->
+    <section id="recommendedSection" class="container py-5">
+      <div class="text-center mb-4">
+        <h2 data-i18n="recommended.title">Рекомендованные специалисты</h2>
+        <p class="text-muted" data-i18n="recommended.subtitle">Фильтр по навыкам и опыту</p>
+      </div>
+
+      <div class="row g-4" id="recommended"></div>
+    </section>
+  </main>
+
+  <footer class="text-center py-4 border-top text-muted">
+    <div class="container">
+      <small>© <span id="year"></span> FindTeam — Все права защищены</small>
+    </div>
+  </footer>
+
+  <!-- Modal placeholder (created by JS) -->
+  <div id="modalRoot"></div>
+
+  <!-- scripts -->
+  <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="scripts/main.js"></script>
+</body>
+</html>

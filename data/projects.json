@@ -1,0 +1,20 @@
+[
+  {
+    "id": 1,
+    "title": "HealthAI",
+    "tags": ["AI", "Python", "Flask"],
+    "short": "Приложение для анализа здоровья с помощью искусственного интеллекта.",
+    "description": "Цель — собрать базовый ML-пайплайн для анализа пользовательских данных и визуализации результатов. Ищем frontend, backend и ML-инженера.",
+    "owner": "Нуржан",
+    "membersNeeded": ["Frontend", "Backend", "ML"]
+  },
+  {
+    "id": 2,
+    "title": "EduPlatform",
+    "tags": ["React", "Node", "Postgres"],
+    "short": "Платформа для обмена образовательными ресурсами.",
+    "description": "Проект для студентов: загрузка курсов, рейтинги, система комментариев. Нужны backend и дизайнер.",
+    "owner": "Алия",
+    "membersNeeded": ["Backend", "Designer"]
+  }
+]

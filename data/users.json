@@ -1,0 +1,42 @@
+[
+  {
+    "id": 1,
+    "name": "Алия Т.",
+    "role": "Frontend",
+    "skills": ["HTML", "CSS", "JS", "React"],
+    "experience": "Junior",
+    "location": "Астана",
+    "bio": "Ищу команду для первого старта. Есть портфолио простых SPA.",
+    "contact": {"telegram": "@aliya", "email": "aliya@example.com"}
+  },
+  {
+    "id": 2,
+    "name": "Егор К.",
+    "role": "Backend",
+    "skills": ["Java", "Spring", "SQL"],
+    "experience": "Middle",
+    "location": "Алматы",
+    "bio": "Готов выступить техническим лидом для небольшого проекта.",
+    "contact": {"telegram": "@egor", "email": "egor@example.com"}
+  },
+  {
+    "id": 3,
+    "name": "Дина С.",
+    "role": "Designer",
+    "skills": ["Figma", "UX", "UI", "Prototyping"],
+    "experience": "Junior",
+    "location": "Шымкент",
+    "bio": "Люблю удобные интерфейсы — готова помочь с визуалом.",
+    "contact": {"telegram": "@dina", "email": "dina@example.com"}
+  },
+  {
+    "id": 4,
+    "name": "Марат А.",
+    "role": "ML",
+    "skills": ["Python", "PyTorch", "ML", "Data"],
+    "experience": "Junior",
+    "location": "Актобе",
+    "bio": "Интерес к проектам по computer vision и анализу данных.",
+    "contact": {"telegram": "@marat", "email": "marat@example.com"}
+  }
+]
