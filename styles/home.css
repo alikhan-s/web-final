@@ -86,29 +86,46 @@ footer{background:transparent}
   to { transform: rotate(360deg); }
 }
 
-/* 2. Back to Top Button */
+/* 2. Back to Top Button (ФИНАЛЬНАЯ ВЕРСИЯ С ФИКСОМ) */
 .back-to-top {
   position: fixed;
-  bottom: 20px;
-  right: 20px;
-  display: none;
-  width: 40px;
-  height: 40px;
+  bottom: 25px;
+  right: 25px;
+  width: 44px;
+  height: 44px;
   border-radius: 50%;
   background: var(--primary);
   color: #fff;
   text-decoration: none;
-  font-size: 20px;
-  line-height: 40px;
-  text-align: center;
-  opacity: 0.7;
-  transition: opacity 0.3s, visibility 0.3s;
+  
+  /* Красиво центрируем иконку */
+  display: flex; 
+  align-items: center;
+  justify-content: center;
+  font-size: 24px;
+  
+  /* ПРЯЧЕМ ПО УМОЛЧАНИЮ (прозрачный и невидимый) */
+  opacity: 0;
+  visibility: hidden;
+  
+  /* Анимируем появление/исчезновение */
+  transition: opacity 0.3s, visibility 0.3s, background-color 0.3s, transform 0.3s;
   z-index: 1000;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.1);
 }
+
+/* НОВЫЙ КЛАСС: JS будет добавлять этот класс, чтобы ПОКАЗАТЬ кнопку */
+.back-to-top.is-visible {
+    opacity: 0.8; 
+    visibility: visible;
+}
+
 .back-to-top:hover {
-  opacity: 1;
+  opacity: 1; 
+  transform: translateY(-3px); 
   color: #fff;
 }
+
 
 /* 3. Scroll Animation */
 .reveal-on-scroll {
@@ -208,12 +225,6 @@ body.dark-mode .btn-outline-primary:hover {
     background-color: var(--primary);
     border-color: var(--primary);
 }
-
-/*
- * =========================================================
- * --- ФИКС ТЕКСТА В КАРТОЧКАХ (по скриншоту 172452) ---
- * =========================================================
- */
 
 /* 9. Исправляем ТЕКСТ ВНУТРИ КАРТОЧЕК */
 body.dark-mode .card {

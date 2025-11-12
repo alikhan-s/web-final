@@ -153,7 +153,6 @@ const App = (function () {
 
   const state = {
     lang: localStorage.getItem('ft_lang') || 'ru',
-    // --- УБИРАЕМ 'theme' из state, им будет управлять localStorage + applySavedTheme ---
     users: [],
     projects: []
   };
@@ -186,8 +185,6 @@ const App = (function () {
     const langBtn = document.getElementById('langToggle');
     if (langBtn) langBtn.textContent = state.lang === 'ru' ? 'EN' : 'RU';
   }
-
-  // --- УБИРАЕМ СТАРУЮ ФУНКЦИЮ setTheme ---
 
   // Fetch JSON helpers
   async function loadJSON(path) {
@@ -454,7 +451,7 @@ const App = (function () {
     // 1. Применяем язык
     applyTranslations();
 
-    // --- 2. НОВАЯ ЛОГИКА ТЕМЫ (из портфолио) ---
+    // --- 2. ЛОГИКА ТЕМЫ (из портфолио) ---
     const $themeToggle = $('#theme-toggle');
     const $body = $('body');
 
@@ -481,7 +478,7 @@ const App = (function () {
             $themeToggle.removeClass('bi-sun-fill').addClass('bi-moon-fill');
         }
     });
-    // --- КОНЕЦ НОВОЙ ЛОГИКИ ТЕМЫ ---
+    // --- КОНЕЦ ЛОГИКИ ТЕМЫ ---
 
     // 3. Остальная логика
     
@@ -497,19 +494,24 @@ const App = (function () {
       if (e.key === 'Escape') closeModal();
     });
 
-    // Back to Top Button Logic
+    // --- ИСПРАВЛЕННАЯ ЛОГИКА Back to Top ---
     const $topBtn = $('.back-to-top');
+    
+    // Слушатель скролла
     $(window).on('scroll', () => {
-      if ($(this).scrollTop() > 300) {
-        $topBtn.fadeIn();
+      if ($(this).scrollTop() > 300) { 
+        $topBtn.addClass('is-visible'); // Показываем
       } else {
-        $topBtn.fadeOut();
+        $topBtn.removeClass('is-visible'); // Прячем
       }
     });
+    
+    // Слушатель клика (остается без изменений)
     $topBtn.on('click', (e) => {
       e.preventDefault();
       $('html, body').animate({ scrollTop: 0 }, 500);
     });
+    // --- КОНЕЦ ИСПРАВЛЕНИЯ ---
 
     // --- ОБНОВЛЕНО: Копирование (использует getTranslation) ---
     $('#modalRoot').on('click', '.btn-copy', function() {
