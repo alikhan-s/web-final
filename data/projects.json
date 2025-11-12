@@ -2,7 +2,7 @@
   {
     "id": 1,
     "title": "HealthAI",
-    "tags": ["AI", "Python", "Flask"],
+    "tags": ["AI", "Python", "Flask", "ML"],
     "short": "Приложение для анализа здоровья с помощью искусственного интеллекта.",
     "description": "Цель — собрать базовый ML-пайплайн для анализа пользовательских данных и визуализации результатов. Ищем frontend, backend и ML-инженера.",
     "owner": "Нуржан",
@@ -16,5 +16,32 @@
     "description": "Проект для студентов: загрузка курсов, рейтинги, система комментариев. Нужны backend и дизайнер.",
     "owner": "Алия",
     "membersNeeded": ["Backend", "Designer"]
+  },
+  {
+    "id": 3,
+    "title": "EcoMonitor",
+    "tags": ["Java", "Spring", "IoT", "SQL"],
+    "short": "Система мониторинга качества воздуха в городах.",
+    "description": "Собираем данные с IoT-датчиков, обрабатываем на Spring-бэкенде и показываем на карте. Нужны Java-разработчик и Frontend (React/Vue).",
+    "owner": "Егор",
+    "membersNeeded": ["Backend (Java)", "Frontend"]
+  },
+  {
+    "id": 4,
+    "title": "GameDev Start",
+    "tags": ["C++", "Unreal", "GameDev"],
+    "short": "Разработка 2D-платформера на Unreal Engine.",
+    "description": "Ищем энтузиастов, готовых изучать C++ и UE4/5. Проект для портфолио, начинаем с нуля. Нужен C++ программист и 2D-художник.",
+    "owner": "Марат",
+    "membersNeeded": ["C++ Developer", "Designer"]
+  },
+  {
+    "id": 5,
+    "title": "FinTech Analyzer",
+    "tags": ["Python", "Pandas", "Data"],
+    "short": "Инструмент для анализа биржевых данных.",
+    "description": "Парсинг данных, анализ и построение графиков. Используем Python (Pandas, Matplotlib). Ищем Data Scientist и Frontend.",
+    "owner": "Дина",
+    "membersNeeded": ["Data Scientist", "Frontend"]
   }
 ]

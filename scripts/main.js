@@ -1,49 +1,159 @@
 // main.js — централизованная логика для всех страниц
 const App = (function () {
+  
+  // --- Полный словарь переводов ---
   const LANGS = {
     ru: {
+      // Навигация
       "nav.home": "Главная",
       "nav.search": "Поиск",
       "nav.projects": "Проекты",
       "nav.about": "О нас",
       "nav.login": "Войти",
       "nav.signup": "Регистрация",
+      // Главная (Hero)
       "hero.title": "Найди команду. Начни проект. Развивайся.",
       "hero.subtitle": "Платформа для начинающих специалистов — находи людей с похожими навыками, создавай команды и запускай первые проекты.",
       "hero.cta1": "Начать поиск",
       "hero.cta2": "Как это работает",
+      // Главная (Быстрый поиск)
       "quicksearch.title": "Быстрый поиск",
       "quicksearch.label": "Что ищешь?",
+      "quicksearch.placeholder": "frontend, дизайнер...",
       "quicksearch.role": "Роль",
       "quicksearch.btn": "Поиск",
       "quicksearch.invalid": "Введите запрос",
+      // Главная (Рекомендованные)
       "recommended.title": "Рекомендованные специалисты",
-      "recommended.subtitle": "Фильтр по навыкам и опыту"
+      "recommended.subtitle": "Фильтр по навыкам и опыту",
+      // Поиск
+      "search.title": "Поиск специалистов",
+      "search.placeholder": "Введите навык (React, Python...)",
+      "search.anyRole": "Любая роль",
+      "search.btn": "Поиск",
+      "search.noResults": "Ничего не найдено",
+      // Проекты
+      "projects.title": "Активные проекты",
+      "projects.join": "Присоединиться",
+      // О нас
+      "about.title": "О проекте FindTeam",
+      "about.p1": "FindTeam — платформа для студентов и начинающих специалистов, которая помогает находить единомышленников для совместных проектов, хакатонов и стартапов. Наша цель — сделать первый командный опыт доступным и комфортным.",
+      "about.li1": "Поиск людей по навыкам",
+      "about.li2": "Публикация проектов и поиск участников",
+      "about.li3": "Удобный интерфейс и фильтрация",
+      // Вход (Login)
+      "login.title": "Вход",
+      "login.email": "Email",
+      "login.password": "Пароль",
+      "login.btn": "Войти",
+      "login.noAccount": "Нет аккаунта?",
+      "login.signupLink": "Регистрация",
+      "login.alert": "Вход выполнен (демо).",
+      // Регистрация (Signup)
+      "signup.title": "Регистрация",
+      "signup.name": "Имя",
+      "signup.email": "Email",
+      "signup.password": "Пароль",
+      "signup.role": "Роль",
+      "signup.btn": "Создать аккаунт",
+      "signup.alert": "Аккаунт создан (демо). Проверьте email (заглушка).",
+      // Сообщения об ошибках (Forms)
+      "invalid.name": "Введите имя",
+      "invalid.email": "Введите корректный email",
+      "invalid.password": "Пароль минимум 6 символов",
+      // Динамический контент (Модалки, кнопки)
+      "modal.details": "Подробнее",
+      "modal.role": "Роль",
+      "modal.bio": "О себе",
+      "modal.skills": "Навыки",
+      "modal.contacts": "Контакты",
+      "modal.close": "Закрыть",
+      "modal.copy": "Копировать Email",
+      "modal.copied": "Скопировано!",
+      "modal.copyError": "Ошибка!",
+      "modal.project.desc": "Описание",
+      "modal.project.tags": "Тэги",
+      "modal.project.owner": "Владелец",
+      "modal.project.needed": "Нужны"
     },
     en: {
+      // Nav
       "nav.home": "Home",
       "nav.search": "Search",
       "nav.projects": "Projects",
       "nav.about": "About",
       "nav.login": "Login",
       "nav.signup": "Sign up",
+      // Hero
       "hero.title": "Find teammates. Start a project. Grow.",
       "hero.subtitle": "A platform for beginners — find people with similar skills, build teams and launch your first projects.",
       "hero.cta1": "Start searching",
       "hero.cta2": "How it works",
+      // Quick Search
       "quicksearch.title": "Quick search",
       "quicksearch.label": "What are you looking for?",
+      "quicksearch.placeholder": "frontend, designer...",
       "quicksearch.role": "Role",
       "quicksearch.btn": "Search",
       "quicksearch.invalid": "Enter a query",
+      // Recommended
       "recommended.title": "Recommended specialists",
-      "recommended.subtitle": "Filter by skills and experience"
+      "recommended.subtitle": "Filter by skills and experience",
+      // Search
+      "search.title": "Search Specialists",
+      "search.placeholder": "Enter a skill (React, Python...)",
+      "search.anyRole": "Any role",
+      "search.btn": "Search",
+      "search.noResults": "Nothing found",
+      // Projects
+      "projects.title": "Active Projects",
+      "projects.join": "Join",
+      // About
+      "about.title": "About FindTeam",
+      "about.p1": "FindTeam is a platform for students and beginners, helping to find teammates for joint projects, hackathons, and startups. Our goal is to make the first team experience accessible and comfortable.",
+      "about.li1": "Search for people by skills",
+      "about.li2": "Publish projects and find members",
+      "about.li3": "Convenient interface and filtering",
+      // Login
+      "login.title": "Login",
+      "login.email": "Email",
+      "login.password": "Password",
+      "login.btn": "Login",
+      "login.noAccount": "No account?",
+      "login.signupLink": "Sign up",
+      "login.alert": "Login successful (demo).",
+      // Signup
+      "signup.title": "Sign up",
+      "signup.name": "Name",
+      "signup.email": "Email",
+      "signup.password": "Password",
+      "signup.role": "Role",
+      "signup.btn": "Create account",
+      "signup.alert": "Account created (demo). Check your email (stub).",
+      // Form Invalids
+      "invalid.name": "Enter your name",
+      "invalid.email": "Enter a valid email",
+      "invalid.password": "Password must be at least 6 characters",
+      // Dynamic content
+      "modal.details": "Details",
+      "modal.role": "Role",
+      "modal.bio": "About",
+      "modal.skills": "Skills",
+      "modal.contacts": "Contacts",
+      "modal.close": "Close",
+      "modal.copy": "Copy Email",
+      "modal.copied": "Copied!",
+      "modal.copyError": "Error!",
+      "modal.project.desc": "Description",
+      "modal.project.tags": "Tags",
+      "modal.project.owner": "Owner",
+      "modal.project.needed": "Members needed"
     }
   };
 
   const state = {
     lang: localStorage.getItem('ft_lang') || 'ru',
-    theme: localStorage.getItem('ft_theme') || 'light',
+    // --- УБИРАЕМ 'theme' из state, им будет управлять localStorage + applySavedTheme ---
     users: [],
     projects: []
   };
@@ -52,30 +162,32 @@ const App = (function () {
   function $qs(sel, root = document) { return root.querySelector(sel); }
   function $qsa(sel, root = document) { return Array.from(root.querySelectorAll(sel)); }
 
-  // i18n simple
+  // --- Функция для получения перевода в JS ---
+  function getTranslation(key) {
+    return LANGS[state.lang][key] || key; 
+  }
+
+  // --- i18n (теперь также для placeholder) ---
   function applyTranslations() {
     document.documentElement.lang = state.lang === 'en' ? 'en' : 'ru';
     const dict = LANGS[state.lang];
+    
     $qsa('[data-i18n]').forEach(el => {
       const key = el.getAttribute('data-i18n');
-      if (dict[key]) el.textContent = dict[key];
+      if (dict[key]) {
+        if (el.placeholder !== undefined) {
+          el.placeholder = dict[key];
+        } else {
+          el.textContent = dict[key];
+        }
+      }
     });
     // lang toggle button label
     const langBtn = document.getElementById('langToggle');
     if (langBtn) langBtn.textContent = state.lang === 'ru' ? 'EN' : 'RU';
   }
 
-  function setTheme(theme) {
-    if (theme === 'dark') {
-      document.documentElement.setAttribute('data-theme', 'dark');
-      document.getElementById && (document.getElementById('themeToggle').textContent = '☀️');
-    } else {
-      document.documentElement.removeAttribute('data-theme');
-      document.getElementById && (document.getElementById('themeToggle').textContent = '🌙');
-    }
-    state.theme = theme;
-    localStorage.setItem('ft_theme', theme);
-  }
+  // --- УБИРАЕМ СТАРУЮ ФУНКЦИЮ setTheme ---
 
   // Fetch JSON helpers
   async function loadJSON(path) {
@@ -89,10 +201,10 @@ const App = (function () {
     }
   }
 
-  // Render user card
+  // --- ОБНОВЛЕНО: renderUserCard (добавлен data-i18n) ---
   function renderUserCard(u) {
     const col = document.createElement('div');
-    col.className = 'col-md-4';
+    col.className = 'col-md-4 reveal-on-scroll';
     col.innerHTML = `
       <div class="card h-100 shadow-sm">
         <div class="card-body d-flex flex-column">
@@ -106,8 +218,8 @@ const App = (function () {
           <p class="flex-grow-1">${u.bio}</p>
           <div class="mb-3">${u.skills.map(s => `<span class="badge bg-light text-dark me-1">${s}</span>`).join('')}</div>
           <div class="d-flex justify-content-end gap-2">
-            <button class="btn btn-outline-primary btn-sm btn-details" data-id="${u.id}">Подробнее</button>
-            <a class="btn btn-primary btn-sm" href="mailto:${u.contact.email}">Связаться</a>
+            <button class="btn btn-outline-primary btn-sm btn-details" data-id="${u.id}" data-i18n="modal.details">Подробнее</button>
+            <a class="btn btn-primary btn-sm" href="mailto:${u.contact.email}" data-i18n="modal.contacts">Связаться</a>
           </div>
         </div>
       </div>
@@ -115,10 +227,10 @@ const App = (function () {
     return col;
   }
 
-  // Render project card
+  // --- ОБНОВЛЕНО: renderProjectCard (добавлен data-i18n) ---
   function renderProjectCard(p) {
     const col = document.createElement('div');
-    col.className = 'col-md-4';
+    col.className = 'col-md-4 reveal-on-scroll';
     col.innerHTML = `
       <div class="card h-100 shadow-sm">
         <div class="card-body d-flex flex-column">
@@ -126,8 +238,8 @@ const App = (function () {
           <p class="flex-grow-1">${p.short}</p>
           <div class="mb-3">${p.tags.map(t => `<span class="badge bg-light text-dark me-1">${t}</span>`).join('')}</div>
           <div class="d-flex justify-content-end gap-2">
-            <button class="btn btn-outline-primary btn-sm btn-project" data-id="${p.id}">Подробнее</button>
-            <button class="btn btn-primary btn-sm">Присоединиться</button>
+            <button class="btn btn-outline-primary btn-sm btn-project" data-id="${p.id}" data-i18n="modal.details">Подробнее</button>
+            <button class="btn btn-primary btn-sm" data-i18n="projects.join">Присоединиться</button>
           </div>
         </div>
       </div>
@@ -154,11 +266,25 @@ const App = (function () {
     document.body.style.overflow = '';
   }
 
+  // Scroll Animation Logic
+  function handleScrollAnimations() {
+    const $window = $(window);
+    const windowBottom = $window.scrollTop() + $window.height();
+
+    $('.reveal-on-scroll').each(function () {
+      const $el = $(this);
+      const elementTop = $el.offset().top;
+
+      if (elementTop < windowBottom - 100) {
+        $el.addClass('is-visible');
+      }
+    });
+  }
+
   // Initialize page-specific functionality
   async function initIndexPage() {
     document.getElementById('year') && (document.getElementById('year').textContent = new Date().getFullYear());
 
-    // load users
     state.users = await loadJSON('data/users.json');
     const container = document.getElementById('recommended');
     if (container) {
@@ -166,20 +292,17 @@ const App = (function () {
       state.users.forEach(u => container.appendChild(renderUserCard(u)));
     }
 
-    // quick search
     const quickSearch = document.getElementById('quickSearch');
     if (quickSearch) {
       quickSearch.addEventListener('submit', (e) => {
         e.preventDefault();
         const q = document.getElementById('q').value.trim();
         if (!q) {
-          // bootstrap validation
           const input = document.getElementById('q');
           input.classList.add('is-invalid');
           setTimeout(()=>input.classList.remove('is-invalid'), 1400);
           return;
         }
-        // redirect to search with query params
         const role = document.getElementById('role').value;
         const url = new URL(window.location.origin + '/search.html');
         url.searchParams.set('q', q);
@@ -188,7 +311,7 @@ const App = (function () {
       });
     }
 
-    // details button (event delegation)
+    // --- ОБНОВЛЕНО: Модальное окно (использует getTranslation) ---
     document.getElementById('recommended')?.addEventListener('click', (e) => {
       if (e.target.matches('.btn-details')) {
         const id = Number(e.target.dataset.id);
@@ -197,12 +320,15 @@ const App = (function () {
           openModal(`
             <div class="d-flex justify-content-between align-items-start mb-3">
               <h4>${user.name}</h4>
-              <button class="btn btn-sm btn-outline-secondary" id="modalClose">Закрыть</button>
+              <button class="btn btn-sm btn-outline-secondary" id="modalClose">${getTranslation('modal.close')}</button>
             </div>
-            <p><strong>Роль:</strong> ${user.role} — ${user.experience}</p>
-            <p><strong>О себе:</strong> ${user.bio}</p>
-            <p><strong>Навыки:</strong> ${user.skills.join(', ')}</p>
-            <p><strong>Контакты:</strong> <a href="mailto:${user.contact.email}">${user.contact.email}</a> • <a href="https://t.me/${user.contact.telegram.replace('@','')}" target="_blank" rel="noopener noreferrer">${user.contact.telegram}</a></p>
+            <p><strong>${getTranslation('modal.role')}:</strong> ${user.role} — ${user.experience}</p>
+            <p><strong>${getTranslation('modal.bio')}:</strong> ${user.bio}</p>
+            <p><strong>${getTranslation('modal.skills')}:</strong> ${user.skills.join(', ')}</p>
+            <p><strong>${getTranslation('modal.contacts')}:</strong> <a href="mailto:${user.contact.email}">${user.contact.email}</a> 
+              <button class="btn btn-sm btn-outline-secondary ms-2 btn-copy" data-copy-text="${user.contact.email}">${getTranslation('modal.copy')}</button> • 
+              <a href="https://t.me/${user.contact.telegram.replace('@','')}" target="_blank" rel="noopener noreferrer">${user.contact.telegram}</a>
+            </p>
           `);
           document.getElementById('modalRoot')?.addEventListener('click', (ev) => {
             if (ev.target && ev.target.id === 'modalClose') closeModal();
@@ -213,30 +339,27 @@ const App = (function () {
   }
 
   async function initSearchPage() {
-    // load users
     state.users = await loadJSON('data/users.json');
     const results = document.getElementById('results');
 
     function renderResults(list) {
       results.innerHTML = '';
       if (list.length === 0) {
-        results.innerHTML = `<div class="col-12"><div class="alert alert-info">Ничего не найдено</div></div>`;
+        results.innerHTML = `<div class="col-12"><div class="alert alert-info">${getTranslation('search.noResults')}</div></div>`;
         return;
       }
       list.forEach(u => results.appendChild(renderUserCard(u)));
+      handleScrollAnimations();
     }
 
-    // prefill from query string
     const params = new URLSearchParams(window.location.search);
     const q = params.get('q') || '';
     const role = params.get('role') || '';
     if (q) document.getElementById('skill').value = q;
     if (role) document.getElementById('roleSelect').value = role;
 
-    // initial render: all
     renderResults(state.users);
 
-    // form submit (filter)
     document.getElementById('searchForm')?.addEventListener('submit', (e) => {
       e.preventDefault();
       const skill = document.getElementById('skill').value.trim().toLowerCase();
@@ -249,7 +372,7 @@ const App = (function () {
       renderResults(res);
     });
 
-    // details event listener (delegation)
+    // --- ОБНОВЛЕНО: Модальное окно (использует getTranslation) ---
     document.getElementById('results')?.addEventListener('click', (e) => {
       if (e.target.matches('.btn-details')) {
         const id = Number(e.target.dataset.id);
@@ -258,12 +381,15 @@ const App = (function () {
           openModal(`
             <div class="d-flex justify-content-between align-items-start mb-3">
               <h4>${user.name}</h4>
-              <button class="btn btn-sm btn-outline-secondary" id="modalClose">Закрыть</button>
+              <button class="btn btn-sm btn-outline-secondary" id="modalClose">${getTranslation('modal.close')}</button>
             </div>
-            <p><strong>Роль:</strong> ${user.role} — ${user.experience}</p>
-            <p><strong>О себе:</strong> ${user.bio}</p>
-            <p><strong>Навыки:</strong> ${user.skills.join(', ')}</p>
-            <p><strong>Контакты:</strong> <a href="mailto:${user.contact.email}">${user.contact.email}</a> • <a href="https://t.me/${user.contact.telegram.replace('@','')}" target="_blank">${user.contact.telegram}</a></p>
+            <p><strong>${getTranslation('modal.role')}:</strong> ${user.role} — ${user.experience}</p>
+            <p><strong>${getTranslation('modal.bio')}:</strong> ${user.bio}</p>
+            <p><strong>${getTranslation('modal.skills')}:</strong> ${user.skills.join(', ')}</p>
+            <p><strong>${getTranslation('modal.contacts')}:</strong> <a href="mailto:${user.contact.email}">${user.contact.email}</a> 
+              <button class="btn btn-sm btn-outline-secondary ms-2 btn-copy" data-copy-text="${user.contact.email}">${getTranslation('modal.copy')}</button> • 
+              <a href="https://t.me/${user.contact.telegram.replace('@','')}" target="_blank">${user.contact.telegram}</a>
+            </p>
           `);
         }
       }
@@ -276,8 +402,9 @@ const App = (function () {
     if (!list) return;
     list.innerHTML = '';
     state.projects.forEach(p => list.appendChild(renderProjectCard(p)));
+    handleScrollAnimations();
 
-    // details
+    // --- ОБНОВЛЕНО: Модальное окно (использует getTranslation) ---
     list.addEventListener('click', (e) => {
       if (e.target.matches('.btn-project')) {
         const id = Number(e.target.dataset.id);
@@ -286,19 +413,19 @@ const App = (function () {
           openModal(`
             <div class="d-flex justify-content-between align-items-start mb-3">
               <h4>${project.title}</h4>
-              <button class="btn btn-sm btn-outline-secondary" id="modalClose">Закрыть</button>
+              <button class="btn btn-sm btn-outline-secondary" id="modalClose">${getTranslation('modal.close')}</button>
             </div>
-            <p><strong>Описание:</strong> ${project.description}</p>
-            <p><strong>Тэги:</strong> ${project.tags.join(', ')}</p>
-            <p><strong>Владелец:</strong> ${project.owner}</p>
-            <p><strong>Нужны:</strong> ${project.membersNeeded.join(', ')}</p>
+            <p><strong>${getTranslation('modal.project.desc')}:</strong> ${project.description}</p>
+            <p><strong>${getTranslation('modal.project.tags')}:</strong> ${project.tags.join(', ')}</p>
+            <p><strong>${getTranslation('modal.project.owner')}:</strong> ${project.owner}</p>
+            <p><strong>${getTranslation('modal.project.needed')}:</strong> ${project.membersNeeded.join(', ')}</p>
           `);
         }
       }
     });
   }
 
-  // Form validation handlers for login/signup
+  // --- ОБНОВЛЕНО: Валидация (использует getTranslation) ---
   function attachFormValidation() {
     document.querySelectorAll('form').forEach(form => {
       form.addEventListener('submit', function (e) {
@@ -308,15 +435,14 @@ const App = (function () {
           form.classList.add('was-validated');
           return;
         }
-        // example fake success handling for login/signup — show alert / modal
-        // For real projects: submit to backend endpoint
+        
         if (form.id === 'signupForm') {
           e.preventDefault();
-          alert('Аккаунт создан (демо). Проверьте email (заглушка).');
+          alert(getTranslation('signup.alert'));
           form.reset();
         } else if (form.id === 'loginForm') {
           e.preventDefault();
-          alert('Вход выполнен (демо).');
+          alert(getTranslation('login.alert'));
           form.reset();
         }
       }, false);
@@ -325,10 +451,40 @@ const App = (function () {
 
   // Global initializations
   async function init() {
-    // apply lang and theme
+    // 1. Применяем язык
     applyTranslations();
-    setTheme(state.theme);
 
+    // --- 2. НОВАЯ ЛОГИКА ТЕМЫ (из портфолио) ---
+    const $themeToggle = $('#theme-toggle');
+    const $body = $('body');
+
+    function applySavedTheme() {
+        const savedTheme = localStorage.getItem('ft_theme'); 
+        if (savedTheme === 'dark') {
+            $body.addClass('dark-mode');
+            $themeToggle.removeClass('bi-moon-fill').addClass('bi-sun-fill');
+        } else {
+            $body.removeClass('dark-mode');
+            $themeToggle.removeClass('bi-sun-fill').addClass('bi-moon-fill');
+        }
+    }
+    // Сразу применяем тему при загрузке
+    applySavedTheme(); 
+
+    $themeToggle.on('click', function() {
+        $body.toggleClass('dark-mode');
+        if ($body.hasClass('dark-mode')) {
+            localStorage.setItem('ft_theme', 'dark'); 
+            $themeToggle.removeClass('bi-moon-fill').addClass('bi-sun-fill');
+        } else {
+            localStorage.setItem('ft_theme', 'light'); 
+            $themeToggle.removeClass('bi-sun-fill').addClass('bi-moon-fill');
+        }
+    });
+    // --- КОНЕЦ НОВОЙ ЛОГИКИ ТЕМЫ ---
+
+    // 3. Остальная логика
+    
     // lang toggle
     document.getElementById('langToggle')?.addEventListener('click', () => {
       state.lang = state.lang === 'ru' ? 'en' : 'ru';
@@ -336,29 +492,58 @@ const App = (function () {
       applyTranslations();
     });
 
-    // theme toggle
-    document.getElementById('themeToggle')?.addEventListener('click', () => {
-      setTheme(state.theme === 'dark' ? 'light' : 'dark');
-    });
-
     // close modal on ESC
     document.addEventListener('keydown', (e) => {
       if (e.key === 'Escape') closeModal();
     });
 
-    // Clicks on nav links — highlight active
-    document.querySelectorAll('.nav-link').forEach(link => {
-      if (link.href === window.location.href || link.getAttribute('href') === window.location.pathname.split('/').pop()) {
-        link.classList.add('active');
+    // Back to Top Button Logic
+    const $topBtn = $('.back-to-top');
+    $(window).on('scroll', () => {
+      if ($(this).scrollTop() > 300) {
+        $topBtn.fadeIn();
+      } else {
+        $topBtn.fadeOut();
       }
-      link.addEventListener('click', () => {
-        document.querySelectorAll('.nav-link').forEach(l => l.classList.remove('active'));
-        link.classList.add('active');
+    });
+    $topBtn.on('click', (e) => {
+      e.preventDefault();
+      $('html, body').animate({ scrollTop: 0 }, 500);
+    });
+
+    // --- ОБНОВЛЕНО: Копирование (использует getTranslation) ---
+    $('#modalRoot').on('click', '.btn-copy', function() {
+      const $btn = $(this);
+      const textToCopy = $btn.attr('data-copy-text');
+
+      navigator.clipboard.writeText(textToCopy).then(() => {
+        const originalText = $btn.text();
+        $btn.text(getTranslation('modal.copied'));
+        $btn.prop('disabled', true);
+        setTimeout(() => {
+          $btn.text(getTranslation('modal.copy')); 
+          $btn.prop('disabled', false);
+        }, 2000);
+      }).catch(err => {
+        console.error('Не удалось скопировать: ', err);
+        $btn.text(getTranslation('modal.copyError'));
       });
     });
 
+    // Scroll Animations Trigger
+    $(window).on('scroll load', handleScrollAnimations);
+    
     // Attach general form validation
     attachFormValidation();
+
+    // Preloader Hide
+    $(window).on('load', () => {
+      const $preloader = $('#preloader');
+      if ($preloader.length) {
+        $preloader.css('opacity', 0);
+        setTimeout(() => $preloader.hide(), 500); 
+      }
+    });
 
     // Route-specific
     const page = window.location.pathname.split('/').pop();

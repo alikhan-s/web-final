@@ -6,43 +6,67 @@
   <title>О нас — FindTeam</title>
 
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
   <link rel="stylesheet" href="styles/home.css" />
 </head>
 <body>
-  <nav class="navbar navbar-expand-lg bg-white shadow-sm sticky-top">
-    <div class="container">
-      <a class="navbar-brand fw-bold text-primary" href="index.html">FindTeam</a>
-      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#mainNav">
-        <span class="navbar-toggler-icon"></span>
-      </button>
-      <div class="collapse navbar-collapse" id="mainNav">
-        <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
-          <li class="nav-item"><a class="nav-link" href="index.html">Главная</a></li>
-          <li class="nav-item"><a class="nav-link" href="search.html">Поиск</a></li>
-          <li class="nav-item"><a class="nav-link" href="projects.html">Проекты</a></li>
-          <li class="nav-item"><a class="nav-link active" href="about.html">О нас</a></li>
-        </ul>
+  <div id="preloader">
+    <div class="loader-spinner"></div>
+  </div>
+
+  <header>
+    <nav class="navbar navbar-expand-lg shadow-sm sticky-top" aria-label="Main navigation">
+      <div class="container">
+        <a class="navbar-brand fw-bold text-primary" href="index.html">FindTeam</a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#mainNav" aria-controls="mainNav" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="collapse navbar-collapse" id="mainNav">
+          <ul class="navbar-nav ms-auto mb-2 mb-lg-0" id="navLinks">
+            <li class="nav-item"><a class="nav-link" href="index.html" data-i18n="nav.home">Главная</a></li>
+            <li class="nav-item"><a class="nav-link" href="search.html" data-i18n="nav.search">Поиск</a></li>
+            <li class="nav-item"><a class="nav-link" href="projects.html" data-i18n="nav.projects">Проекты</a></li>
+            <li class="nav-item"><a class="nav-link active" href="about.html" data-i18n="nav.about">О нас</a></li>
+          </ul>
+
+          <div class="d-flex align-items-center ms-lg-3 gap-2">
+            <button id="langToggle" class="btn btn-outline-secondary btn-sm" aria-label="Переключить язык">EN</button>
+            
+            <div class="theme-switcher ms-lg-3">
+                <i class="bi bi-moon-fill" id="theme-toggle"></i>
+            </div>
+            
+            <a href="login.html" class="btn btn-outline-primary ms-2" data-i18n="nav.login">Войти</a>
+            <a href="signup.html" class="btn btn-primary" data-i18n="nav.signup">Регистрация</a>
+          </div>
+        </div>
       </div>
-    </div>
-  </nav>
+    </nav>
+  </header>
 
   <main class="container py-5">
     <div class="row align-items-center">
       <div class="col-md-6">
-        <h2>О проекте FindTeam</h2>
-        <p>FindTeam — платформа для студентов и начинающих специалистов, которая помогает находить единомышленников для совместных проектов, хакатонов и стартапов. Наша цель — сделать первый командный опыт доступным и комфортным.</p>
+        <h2 data-i18n="about.title">О проекте FindTeam</h2>
+        <p data-i18n="about.p1">FindTeam — платформа для студентов и начинающих специалистов, которая помогает находить единомышленников для совместных проектов, хакатонов и стартапов. Наша цель — сделать первый командный опыт доступным и комфортным.</p>
         <ul>
-          <li>Поиск людей по навыкам</li>
-          <li>Публикация проектов и поиск участников</li>
-          <li>Удобный интерфейс и фильтрация</li>
+          <li data-i18n="about.li1">Поиск людей по навыкам</li>
+          <li data-i18n="about.li2">Публикация проектов и поиск участников</li>
+          <li data-i18n="about.li3">Удобный интерфейс и фильтрация</li>
         </ul>
       </div>
       <div class="col-md-6">
-        <img src="https://cdn-icons-png.flaticon.com/512/1046/1046784.png" alt="Командная работа" class="img-fluid rounded" />
+        <img src="https://images.unsplash.com/photo-1519389950473-47ba0277781c?w=800" alt="Командная работа" class="img-fluid rounded shadow" />
       </div>
     </div>
   </main>
 
   <footer class="text-center py-4 border-top text-muted">© 2025 FindTeam</footer>
+
+  <a href="#" class="back-to-top" title="Наверх">⬆️</a>
+
+  <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+  <script src="scripts/main.js"></script>
 </body>
 </html>
